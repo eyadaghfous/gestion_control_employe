@@ -51,6 +51,9 @@
         @endforeach
     </table>
   
+
+
+    
     {!! $projets->links() !!}
       
 @endsection
