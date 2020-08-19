@@ -172,6 +172,9 @@
                                 <div class="nav-item">
                                     <a href="{{ route('test') }}"><i class="ik ik-home"></i><span>Test</span></a>
                                 </div>
+                                <div class="nav-item">
+                                    <a href="{{ route('planning') }}"><i class="ik ik-calendar"></i><span>Planning</span></a>
+                                </div>
                                 
                                 
                             </nav>

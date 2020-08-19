@@ -1,155 +1,175 @@
 @extends('home')
 
 @section('content')
-<div class="container-fluid">
-    <div class="page-header">
-        <div class="row align-items-end">
-            <div class="col-lg-8">
-                <div class="page-header-title">
-                    <i class="ik ik-calendar bg-blue"></i>
-                    <div class="d-inline">
-                        <h5>Calendar</h5>
-                        <span>To Do</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <nav class="breadcrumb-container" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="../index.html"><i class="ik ik-home"></i></a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="#">Home</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">Calendar</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <div id="calendar"></div>
-                </div>
-            </div>
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h2>Users</h2>
         </div>
-    </div>
-    <div class="modal" id="editEvent" tabindex="-1" role="dialog" aria-labelledby="editEventLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form class="editEventForm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editEventLabel">Edit Event</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="editEname">Event Title</label>
-                            <input type="text" class="form-control" id="editEname" name="editEname" placeholder="Please enter event title">
-                        </div>
-                        <div class="form-group">
-                            <label for="editStarts">Start</label>
-                            <input type="text" class="form-control datetimepicker-input" id="editStarts" name="editStarts" data-toggle="datetimepicker" data-target="#editStarts">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-danger delete-event" type="submit">Delete</button>
-                        <button class="btn btn-success save-event" type="submit">Save</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal" id="addEvent" tabindex="-1" role="dialog" aria-labelledby="addEventLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addEventLabel">Add New Event</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addEventForm">
-                        <div class="form-group">
-                            <label for="eventName">Event Title</label>
-                            <input type="text" class="form-control" id="eventName" name="eventName" placeholder="Please enter event title">
-                        </div>
-                        <div class="form-group">
-                            <label for="eventStarts">Starts</label>
-                            <input type="text" class="form-control datetimepicker-input" id="eventStarts" name="eventStarts" data-toggle="datetimepicker" data-target="#eventStarts">
-                        </div>
-                        <div class="form-group mb-0" id="addColor">
-                            <label for="colors">Choose Color</label>
-                            <ul class="color-selector">
-                                <li class="bg-aqua">
-                                    <input type="radio" data-color="bg-aqua" checked name="colorChosen" id="addColorAqua">
-                                    <label for="addColorAqua"></label>
-                                </li>
-                                <li class="bg-blue">
-                                    <input type="radio" data-color="bg-blue" name="colorChosen" id="addColorBlue">
-                                    <label for="addColorBlue"></label>
-                                </li>
-                                <li class="bg-light-blue">
-                                    <input type="radio" data-color="bg-light-blue" name="colorChosen" id="addColorLightblue">
-                                    <label for="addColorLightblue"></label>
-                                </li>
-                                <li class="bg-teal">
-                                    <input type="radio" data-color="bg-teal" name="colorChosen" id="addColorTeal">
-                                    <label for="addColorTeal"></label>
-                                </li>
-                                <li class="bg-yellow">
-                                    <input type="radio" data-color="bg-yellow" name="colorChosen" id="addColorYellow">
-                                    <label for="addColorYellow"></label>
-                                </li>
-                                <li class="bg-orange">
-                                    <input type="radio" data-color="bg-orange" name="colorChosen" id="addColorOrange">
-                                    <label for="addColorOrange"></label>
-                                </li>
-                                <li class="bg-green">
-                                    <input type="radio" data-color="bg-green" name="colorChosen" id="addColorGreen">
-                                    <label for="addColorGreen"></label>
-                                </li>
-                                <li class="bg-lime">
-                                    <input type="radio" data-color="bg-lime" name="colorChosen" id="addColorLime">
-                                    <label for="addColorLime"></label>
-                                </li>
-                                <li class="bg-red">
-                                    <input type="radio" data-color="bg-red" name="colorChosen" id="addColorRed">
-                                    <label for="addColorRed"></label>
-                                </li>
-                                <li class="bg-purple">
-                                    <input type="radio" data-color="bg-purple" name="colorChosen" id="addColorPurple">
-                                    <label for="addColorPurple"></label>
-                                </li>
-                                <li class="bg-fuchsia">
-                                    <input type="radio" data-color="bg-fuchsia" name="colorChosen" id="addColorFuchsia">
-                                    <label for="addColorFuchsia"></label>
-                                </li>
-                                <li class="bg-muted">
-                                    <input type="radio" data-color="bg-muted" name="colorChosen" id="addColorMuted">
-                                    <label for="addColorMuted"></label>
-                                </li>
-                                <li class="bg-navy">
-                                    <input type="radio" data-color="bg-navy" name="colorChosen" id="addColorNavy">
-                                    <label for="addColorNavy"></label>
-                                </li>
-                            </ul>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success save-event">Save</button>
-                    <button type="button" class="btn btn-danger delete-event" data-dismiss="modal">Delete</button>
-                </div>
-            </div>
+        <div class="float-right m-3">
+            <a class="btn btn-success" href="{{ route('users.create') }}"><i class="ik ik-plus"></i> Add </a>
         </div>
     </div>
 </div>
+
+ <div class="card-body">
+                                <table id="advanced_table" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="nosort" width="10">
+                                                <label class="custom-control custom-checkbox m-0">
+                                                    <input type="checkbox" class="custom-control-input" id="selectall" name="" value="option2">
+                                                    <span class="custom-control-label">&nbsp;</span>
+                                                </label>
+                                            </th>
+                                            <th class="nosort">Avatar</th>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Age</th>
+                                            <th>Start date</th>
+                                            <th>Salary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input select_all_child" id="" name="" value="option2">
+                                                    <span class="custom-control-label">&nbsp;</span>
+                                                </label>
+                                            </td>
+                                            <td><img src="img/users/1.jpg" class="table-user-thumb" alt=""></td>
+                                            <td>Tiger Nixon</td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
+                                            <td>61</td>
+                                            <td>2011/04/25</td>
+                                            <td>$320,800</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input select_all_child" id="" name="" value="option2">
+                                                    <span class="custom-control-label">&nbsp;</span>
+                                                </label>
+                                            </td>
+                                            <td><img src="img/users/2.jpg" class="table-user-thumb" alt=""></td>
+                                            <td>Garrett Winters</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>63</td>
+                                            <td>2011/07/25</td>
+                                            <td>$170,750</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input select_all_child" id="" name="" value="option2">
+                                                    <span class="custom-control-label">&nbsp;</span>
+                                                </label>
+                                            </td>
+                                            <td><img src="img/users/3.jpg" class="table-user-thumb" alt=""></td>
+                                            <td>Ashton Cox</td>
+                                            <td>Junior Technical Author</td>
+                                            <td>San Francisco</td>
+                                            <td>66</td>
+                                            <td>2009/01/12</td>
+                                            <td>$86,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input select_all_child" id="" name="" value="option2">
+                                                    <span class="custom-control-label">&nbsp;</span>
+                                                </label>
+                                            </td>
+                                            <td><img src="img/users/4.jpg" class="table-user-thumb" alt=""></td>
+                                            <td>Cedric Kelly</td>
+                                            <td>Senior Javascript Developer</td>
+                                            <td>Edinburgh</td>
+                                            <td>22</td>
+                                            <td>2012/03/29</td>
+                                            <td>$433,060</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input select_all_child" id="" name="" value="option2">
+                                                    <span class="custom-control-label">&nbsp;</span>
+                                                </label>
+                                            </td>
+                                            <td><img src="img/users/5.jpg" class="table-user-thumb" alt=""></td>
+                                            <td>Airi Satou</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>33</td>
+                                            <td>2008/11/28</td>
+                                            <td>$162,700</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input select_all_child" id="" name="" value="option2">
+                                                    <span class="custom-control-label">&nbsp;</span>
+                                                </label>
+                                            </td>
+                                            <td><img src="img/users/1.jpg" class="table-user-thumb" alt=""></td>
+                                            <td>Brielle Williamson</td>
+                                            <td>Integration Specialist</td>
+                                            <td>New York</td>
+                                            <td>61</td>
+                                            <td>2012/12/02</td>
+                                            <td>$372,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input select_all_child" id="" name="" value="option2">
+                                                    <span class="custom-control-label">&nbsp;</span>
+                                                </label>
+                                            </td>
+                                            <td><img src="img/users/2.jpg" class="table-user-thumb" alt=""></td>
+                                            <td>Herrod Chandler</td>
+                                            <td>Sales Assistant</td>
+                                            <td>San Francisco</td>
+                                            <td>59</td>
+                                            <td>2012/08/06</td>
+                                            <td>$137,500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input select_all_child" id="" name="" value="option2">
+                                                    <span class="custom-control-label">&nbsp;</span>
+                                                </label>
+                                            </td>
+                                            <td><img src="img/users/3.jpg" class="table-user-thumb" alt=""></td>
+                                            <td>Rhona Davidson</td>
+                                            <td>Integration Specialist</td>
+                                            <td>Tokyo</td>
+                                            <td>55</td>
+                                            <td>2010/10/14</td>
+                                            <td>$327,900</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input select_all_child" id="" name="" value="option2">
+                                                    <span class="custom-control-label">&nbsp;</span>
+                                                </label>
+                                            </td>
+                                            <td><img src="img/users/4.jpg" class="table-user-thumb" alt=""></td>
+                                            <td>Colleen Hurst</td>
+                                            <td>Javascript Developer</td>
+                                            <td>San Francisco</td>
+                                            <td>39</td>
+                                            <td>2009/09/15</td>
+                                            <td>$205,500</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
 @endsection

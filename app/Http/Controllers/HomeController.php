@@ -35,4 +35,9 @@ class HomeController extends Controller
     {
         return view('test');
     }
+
+    public function planning()
+    {
+        return view('planning');
+    }
 }

@@ -10,8 +10,8 @@ class Tache extends Model
         'nom', 'debut' , 'fin'
     ];
 
-    public function equipe()
+    public function employee()
     {
-        return $this->hasMany('App\Equipe');
+        return $this->hasMany('App\Employee');
     }
 }

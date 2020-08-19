@@ -10,4 +10,8 @@ class Departement extends Model
         'nom'
     ];
 
+    public function employee()
+    {
+        return $this->hasMany('App\Employee');
+    }
 }

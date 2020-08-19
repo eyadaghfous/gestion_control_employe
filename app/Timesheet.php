@@ -10,7 +10,7 @@ class Timesheet extends Model
         'numero_employe', 'numero_tache' , 'heures' 
     ];
 
-    public function employe()
+    public function employee()
     {
         return $this->hasMany('App\Employee');
     }

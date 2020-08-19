@@ -23,11 +23,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 
+Route::get('/planning', 'HomeController@planning')->name('planning');
+
 Route::get('/test', 'HomeController@test')->name('test');
 
-
 Route::get('/list-of-projects', 'HomeController@list')->name('list-of-projects');
-
 
 Route::get('/activities', 'HomeController@activities')->name('activities');
 

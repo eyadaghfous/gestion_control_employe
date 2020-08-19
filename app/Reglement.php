@@ -10,8 +10,8 @@ class Reglement extends Model
      'type' 
     ];
 
-    public function client() //but mt3 scope : centralisation
+    public function facture() //but mt3 scope : centralisation
     {
-        return $this->belongsTo('App\Client');
+        return $this->hasMany('App\Facture');
     }
 }

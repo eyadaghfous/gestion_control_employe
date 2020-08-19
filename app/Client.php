@@ -10,4 +10,8 @@ class Client extends Model
         'nom', 'prenom' , 'datedenaissance' , 'numerotelephone' , 'adresse' , 'ville' , 'codepostal' , 'email' , 'motdepasse'
     ];
 
+    public function facture()
+    {
+        return $this->hasMany('App\Facture');
+    }
 }

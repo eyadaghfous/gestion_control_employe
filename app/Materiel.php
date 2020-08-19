@@ -12,6 +12,6 @@ class Materiel extends Model
 
     public function equipe()
     {
-        return $this->hasMany('App\Equipe');
+        return $this->belongsTo('App\Equipe');
     }
 }
