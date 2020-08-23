@@ -29,42 +29,60 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Nom:</strong>
+                    <strong>Last Name:</strong>
                     <input type="text" name="nom" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Prénom:</strong>
+                    <strong>First Name:</strong>
                     <input class="form-control" type="text" name="prenom">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Date de naissance:</strong>
-                    <input class="form-control" type="date" name="date_de_naissance">
+                    <strong>Birth Date:</strong>
+                    <input class="form-control" type="date" name="datedenaissance">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Numéro du téléphone:</strong>
-                    <input class="form-control" type="number" name="numero_telephone">
+                    <strong>Phone Number:</strong>
+                    <input class="form-control" type="number" name="numerotelephone">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Adresse:</strong>
+                    <strong>Address:</strong>
                     <textarea class="form-control" name="adresse"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Condition du paiement:</strong>
-                    <input class="form-control" type="text" name="condition_paiement">
+                    <strong>City:</strong>
+                    <input class="form-control" type="text" name="ville">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Postal Code:</strong>
+                    <input class="form-control" type="text" name="codepostal">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Email:</strong>
+                    <input class="form-control" type="email" name="email">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Password:</strong>
+                    <input class="form-control" type="password" name="motdepasse">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
        

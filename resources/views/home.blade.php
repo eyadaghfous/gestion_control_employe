@@ -20,6 +20,9 @@
         <link rel="stylesheet" href="{{ asset('plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/jvectormap/jquery-jvectormap.css') }}">
+        <link rel="stylesheet" href="{{ asset('plugins/select2/dist/css/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('plugins/summernote/dist/summernote-bs4.css') }}">
+        <link rel="stylesheet" href="{{ asset('plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/weather-icons/css/weather-icons.min.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/c3/c3.min.css') }}">
@@ -31,12 +34,7 @@
         <script src="{{ asset('src/js/vendor/modernizr-2.8.3.min.js') }}"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.0.0/main.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@5.0.0/main.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@5.0.0/main.min.js"></script>
-
-    	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.0.0/main.min.css"/>
-
+	
 
     </head>
 
@@ -140,42 +138,43 @@
                         <div class="nav-container">
                             <nav id="main-menu-navigation" class="navigation-main">
                                 
-                                <div class="nav-item">
+                                <div class="nav-item ">
+                                    <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
                                     <a href="{{ route('dashboard') }}"><i class="ik ik-home"></i><span>Dashboard</span></a>
                                 </div>
                         
-                                <div class="nav-item">
-                                    <a href="calendar"><i class="ik ik-calendar"></i><span>User</span></a>
+                                <div class="nav-item {{ Request::is('users') ? 'active' : '' }}">
+                                    <a href="{{ route('users.store') }}"><i class="ik ik-calendar"></i><span>User</span></a>
                                 </div>
-                        
-                                <div class="nav-item ">
+                                <div class="nav-item {{ Request::is('roles') ? 'active' : '' }}">
+                                    <a href="{{ route('roles.index') }}"><i class="ik ik-calendar"></i><span>Role</span></a>
+                                </div>
+                                <div class="nav-item {{ Request::is('departements') ? 'active' : '' }}">
+                                    <a href="{{ route('departements.store') }}"><i class="ik ik-users"></i><span> Departements</span></a>
+                                </div>
+                                <div class="nav-item {{ Request::is('taches') ? 'active' : '' }}">
+                                    <a href="{{ route('taches.store') }}"><i class="ik ik-users"></i><span> Tasks</span></a>
+                                </div>
+                                <div class="nav-item {{ Request::is('clients') ? 'active' : '' }}">
                                     <a href="{{ route('clients.store') }}"><i class="ik ik-users"></i><span> Customers</span></a>
                                 </div>
-                                <div class="nav-item">
+                                <div class="nav-item {{ Request::is('factures') ? 'active' : '' }}">
                                     <a href="{{ route('factures.store') }}"><i class="ik ik-users"></i><span> Invoices</span></a>
                                 </div>
-                                <div class="nav-item">
+                                <div class="nav-item {{ Request::is('contrats') ? 'active' : '' }}">
                                     <a href="{{ route('contrats.store') }}"><i class="ik ik-edit"></i><span> Contracts</span></a>
                                 </div>
                                 
-                                <div class="nav-item">
+                                <div class="nav-item {{ Request::is('employees') ? 'active' : '' }}">
                                     <a href="{{ route('employees.store') }}"><i class="ik ik-user"></i><span>Employees</span></a>
                                    
                                 </div>
-                                
                                 <div class="nav-item">
                                     <a href="{{ route('equipes.store') }}"><i class="ik ik-edit"></i><span> Teams</span></a>
                                 </div>
                                 <div class="nav-item">
                                     <a href="{{ route('projets.store') }}"><i class="ik ik-edit"></i><span> Projects</span></a>
                                 </div>
-                                <div class="nav-item">
-                                    <a href="{{ route('test') }}"><i class="ik ik-home"></i><span>Test</span></a>
-                                </div>
-                                <div class="nav-item">
-                                    <a href="{{ route('planning') }}"><i class="ik ik-calendar"></i><span>Planning</span></a>
-                                </div>
-                                
                                 
                             </nav>
                         </div>
@@ -200,37 +199,37 @@
                             <div class="list-group row">
                                 <a href="javascript:void(0)" class="list-group-item" data-chat-user="Gene Newman">
                                     <figure class="user--online">
-                                        <img src="{{ asset('img/users/1.jpg') }}" class="rounded-circle" alt="">
+                                        <img src="{{ asset('img/user1.jpg') }}" class="rounded-circle" alt="">
                                     </figure><span><span class="name">Gene Newman</span>  <span class="username">@gene_newman</span> </span>
                                 </a>
                                 <a href="javascript:void(0)" class="list-group-item" data-chat-user="Billy Black">
                                     <figure class="user--online">
-                                        <img src="{{ asset('img/users/2.jpg') }}" class="rounded-circle" alt="">
+                                        <img src="{{ asset('img/user2.jpg') }}" class="rounded-circle" alt="">
                                     </figure><span><span class="name">Billy Black</span>  <span class="username">@billyblack</span> </span>
                                 </a>
                                 <a href="javascript:void(0)" class="list-group-item" data-chat-user="Herbert Diaz">
                                     <figure class="user--online">
-                                        <img src="{{ asset('img/users/3.jpg') }}" class="rounded-circle" alt="">
+                                        <img src="{{ asset('img/user3.jpg') }}" class="rounded-circle" alt="">
                                     </figure><span><span class="name">Herbert Diaz</span>  <span class="username">@herbert</span> </span>
                                 </a>
                                 <a href="javascript:void(0)" class="list-group-item" data-chat-user="Sylvia Harvey">
                                     <figure class="user--busy">
-                                        <img src="{{ asset('img/users/4.jpg') }}" class="rounded-circle" alt="">
+                                        <img src="{{ asset('img/user3.jpg') }}" class="rounded-circle" alt="">
                                     </figure><span><span class="name">Sylvia Harvey</span>  <span class="username">@sylvia</span> </span>
                                 </a>
                                 <a href="javascript:void(0)" class="list-group-item active" data-chat-user="Marsha Hoffman">
                                     <figure class="user--busy">
-                                        <img src="{{ asset('img/users/5.jpg') }}" class="rounded-circle" alt="">
+                                        <img src="{{ asset('img/user2.jpg') }}" class="rounded-circle" alt="">
                                     </figure><span><span class="name">Marsha Hoffman</span>  <span class="username">@m_hoffman</span> </span>
                                 </a>
                                 <a href="javascript:void(0)" class="list-group-item" data-chat-user="Mason Grant">
                                     <figure class="user--offline">
-                                        <img src="{{ asset('img/users/1.jpg') }}" class="rounded-circle" alt="">
+                                        <img src="{{ asset('img/user3.jpg') }}" class="rounded-circle" alt="">
                                     </figure><span><span class="name">Mason Grant</span>  <span class="username">@masongrant</span> </span>
                                 </a>
                                 <a href="javascript:void(0)" class="list-group-item" data-chat-user="Shelly Sullivan">
                                     <figure class="user--offline">
-                                        <img src="{{ asset('img/users/2.jpg') }}" class="rounded-circle" alt="">
+                                        <img src="{{ asset('img/user2.jpg') }}" class="rounded-circle" alt="">
                                     </figure><span><span class="name">Shelly Sullivan</span>  <span class="username">@shelly</span></span>
                                 </a>
                             </div>
@@ -251,7 +250,7 @@
                                     <div class="message media reply">
                                         <figure class="user--online">
                                             <a href="#">
-                                                <img src="{{ asset('img/users/3.jpg') }}" class="rounded-circle" alt="">
+                                                <img src="{{ asset('img/user3.jpg') }}" class="rounded-circle" alt="">
                                             </a>
                                         </figure>
                                         <div class="message-body media-body">
@@ -261,7 +260,7 @@
                                     <div class="message media">
                                         <figure class="user--online">
                                             <a href="#">
-                                                <img src="{{ asset('img/users/1.jpg') }}" class="rounded-circle" alt="">
+                                                <img src="{{ asset('img/user1.jpg') }}" class="rounded-circle" alt="">
                                             </a>
                                         </figure>
                                         <div class="message-body media-body">
@@ -271,7 +270,7 @@
                                     <div class="message media reply">
                                         <figure class="user--offline">
                                             <a href="#">
-                                                <img src="{{ asset('img/users/5.jpg') }}" class="rounded-circle" alt="">
+                                                <img src="{{ asset('img/user2.jpg') }}" class="rounded-circle" alt="">
                                             </a>
                                         </figure>
                                         <div class="message-body media-body">
@@ -282,7 +281,7 @@
                                     <div class="message media">
                                         <figure class="user--online">
                                             <a href="#">
-                                                <img src="{{ asset('img/users/1.jpg') }}" class="rounded-circle" alt="">
+                                                <img src="{{ asset('img/user1.jpg') }}" class="rounded-circle" alt="">
                                             </a>
                                         </figure>
                                         <div class="message-body media-body">
@@ -292,7 +291,7 @@
                                     <div class="message media reply">
                                         <figure class="user--busy">
                                             <a href="#">
-                                                <img src="{{ asset('img/users/5.jpg') }}" class="rounded-circle" alt="">
+                                                <img src="{{ asset('img/user2.jpg') }}" class="rounded-circle" alt="">
                                             </a>
                                         </figure>
                                         <div class="message-body media-body">
@@ -302,7 +301,7 @@
                                     <div class="message media">
                                         <figure class="user--online">
                                             <a href="#">
-                                                <img src="{{ asset('img/users/1.jpg') }}" class="rounded-circle" alt="">
+                                                <img src="{{ asset('img/user1.jpg') }}" class="rounded-circle" alt="">
                                             </a>
                                         </figure>
                                         <div class="message-body media-body">
@@ -424,6 +423,10 @@
         <script src="{{ asset('plugins/popper.js/dist/umd/popper.min.js') }}"></script>
         <script src="{{ asset('plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js') }}"></script>
+        <script src="{{ asset('plugins/select2/dist/js/select2.min.js') }}"></script>
+        <script src="{{ asset('plugins/summernote/dist/summernote-bs4.min.js') }}"></script>
+        <script src="{{ asset('plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
+        <script src="{{ asset('plugins/jquery.repeater/jquery.repeater.min.js') }}"></script>
         <script src="{{ asset('plugins/screenfull/dist/screenfull.js') }}"></script>
         <script src="{{ asset('plugins/datatables.net/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
@@ -436,21 +439,14 @@
         <script src="{{ asset('plugins/d3/dist/d3.min.js') }}"></script>
         <script src="{{ asset('plugins/c3/c3.min.js') }}"></script>
         <script src="{{ asset('js/tables.js') }}"></script>
-        <script src="{{ asset('js/widgets.js') }}"></script>
         <script src="{{ asset('js/charts.js') }}"></script>
         <script src="{{ asset('dist/js/theme.min.js') }}"></script>
         <script src="{{ asset('js/calendar.js') }}"></script>
-        <script src="{{ asset('plugins/chartist/dist/chartist.min.js') }}"></script>
-        <script src="{{ asset('js/widget-statistic.js') }}"></script>
         <script src="{{ asset('plugins/datedropper/datedropper.min.js') }}"></script>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+       <script>
+           $('.select2').select2();
+           $('textarea').summernote();
         </script>
         
     </body>

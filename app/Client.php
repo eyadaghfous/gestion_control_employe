@@ -10,8 +10,8 @@ class Client extends Model
         'nom', 'prenom' , 'datedenaissance' , 'numerotelephone' , 'adresse' , 'ville' , 'codepostal' , 'email' , 'motdepasse'
     ];
 
-    public function facture()
+    public function contrat() //but mt3 scope : centralisation
     {
-        return $this->hasMany('App\Facture');
+        return $this->hasMany(Contrat::class);
     }
 }

@@ -34,10 +34,18 @@ class CreateUsersTable extends Migration
            
             $table->timestamps();
         });
-        Schema::create('taches', function(Blueprint $table)
+        Schema::create('statuses', function(Blueprint $table)
         {
             $table->increments('id');
             $table->string('nom');
+            $table->timestamps();
+        });
+        Schema::create('taches', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->string('sommaire');
+            $table->string('description');
+            $table->integer('num_status')->nullable()->unsigned();
             $table->date('debut');
             $table->date('fin');
             $table->timestamps();
@@ -52,7 +60,6 @@ class CreateUsersTable extends Migration
             $table->string('motdepasse');
             $table->string('numerotelephone');
             $table->integer('id_departement')->nullable()->unsigned();
-            $table->integer('id_tache')->nullable()->unsigned();
             $table->string('ville');
             $table->string('etat');
             $table->string('sexe');
@@ -69,6 +76,7 @@ class CreateUsersTable extends Migration
             $table->string('lieu');
             $table->string('type');
             $table->string('chef');
+            $table->integer('id_tache')->nullable()->unsigned();
             $table->timestamps();
         });
         Schema::create('reglements', function(Blueprint $table)
@@ -190,8 +198,12 @@ class CreateUsersTable extends Migration
             $table->foreign('id_departement')->references('id')->on('departements')->onDelete('cascade');
 
         });
-        Schema::table('employees', function (Blueprint $table) {
+        Schema::table('projets', function (Blueprint $table) {
             $table->foreign('id_tache')->references('id')->on('taches')->onDelete('cascade');
+
+        });
+        Schema::table('taches', function (Blueprint $table) {
+            $table->foreign('num_status')->references('id')->on('statuses')->onDelete('cascade');
 
         });
        

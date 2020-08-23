@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Ajouter un nouveau contrat</h2>
+                <h2>Add new contract</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('contrats.index') }}"> Back</a>
@@ -75,8 +75,18 @@
                     <input class="form-control" type="date" name="date_reglement">
                 </div>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Customer:</strong>
+                    <select name="id_client[]" id="id_client" class="form-control">
+                        @foreach($clients as $client)
+                            <option value="{{ $client->id }}">{{ $client->nom }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
        

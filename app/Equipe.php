@@ -13,18 +13,15 @@ class Equipe extends Model
    
     public function materiel()
     {
-        return $this->hasMany('App\Materiel');
+        return $this->belongsTo('App\Materiel');
     }
 
     public function employee()
     {
-        return $this->hasMany('App\Employee');
+        return $this->belongsTo('App\Employee');
     }
-
-    public function contrat()
+    public function contrat() //but mt3 scope : centralisation
     {
-        return $this->hasMany('App\Contrat');
+        return $this->hasMany(Contrat::class);
     }
-
-  
 }

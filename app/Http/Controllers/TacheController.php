@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tache;
+use App\Status;
 use Illuminate\Http\Request;
 
 class TacheController extends Controller
@@ -14,10 +15,31 @@ class TacheController extends Controller
      */
     public function index()
     {
-        $taches = Tache::latest()->paginate(5);
-  
+        
+        $status=Status::all();
+        $taches = Tache::latest()->paginate(20);
+        $todo=[];
+        $progress=[];
+        $completed=[];
+        foreach($taches as $tache)
+        {
+            $todo = $tache
+			->where('num_status', '=', '1')
+            ->get();
+            $progress = $tache
+			->where('num_status', '=', '2')
+            ->get();
+            $completed = $tache
+			->where('num_status', '=', '3')
+			->get();
+        }
+        
         return view('taches.index',compact('taches'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 5)
+            ->with('todo', $todo)
+            ->with('progress', $progress)
+            ->with('completed', $completed)
+            ->with('status', $status);
     }
 
     /**
@@ -27,7 +49,10 @@ class TacheController extends Controller
      */
     public function create()
     {
-        return view('taches.create');
+        $status=Status::all();
+
+        return view('taches.create')
+        ->with('status', $status);
     }
 
     /**
@@ -39,15 +64,19 @@ class TacheController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom' => 'required',
+            'sommaire' => 'required',
+            'description' => 'required',
+            'status' => 'required',
             'debut' => 'required',
             'fin' => 'required',
             
         ]);
   
         Tache::create($request->all());
-   
+        $status=Status::all();
+
         return redirect()->route('taches.index')
+                            ->with('status', $status)
                         ->with('success','Tache ajoutée avec succés.');
     }
 
@@ -80,8 +109,25 @@ class TacheController extends Controller
      * @param  Tache  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tache $tache)
+    public function update(Request $request,  $id)
     {
+        $this->validate($request, [
+            'sommaire' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+            'debut' => 'required',
+            'fin' => 'required',
+        ]);
+
+
+        $input = $request->all();
+        
+
+        $tache = Tache::find($id);
+        $tache->update($input);
+
+
+
         return redirect()->route('taches.index')
         ->with('success','Tache modifiée avec succés');
     }

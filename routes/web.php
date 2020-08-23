@@ -65,6 +65,8 @@ Route::resource('reglements','ReglementController');
 
 Route::resource('taches','TacheController');
 
+Route::resource('departements','DepartementController');
+
 Route::resource('settings','SettingController');
 
 Route::resource('invoices','InvoiceController');
@@ -76,3 +78,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
 });
+
+
+
+
+

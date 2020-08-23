@@ -12,6 +12,6 @@ class Departement extends Model
 
     public function employee()
     {
-        return $this->hasMany('App\Employee');
+        return $this->hasMany(Employee::class);
     }
 }

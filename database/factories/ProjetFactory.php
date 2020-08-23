@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Projet;
+use App\Tache;
 use Faker\Generator as Faker;
 
 $factory->define(Projet::class, function (Faker $faker) {
@@ -14,5 +15,6 @@ $factory->define(Projet::class, function (Faker $faker) {
         'lieu'=> $faker->text,
         'type'=> $faker->text,
         'chef'=> $faker->Lastname,
+        'id_tache' =>Tache::all()->random()->id,
     ];
 });

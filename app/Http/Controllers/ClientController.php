@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Contract;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:client-list|client-create|client-edit|client-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:client-create', ['only' => ['create','store']]);
+         $this->middleware('permission:client-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:client-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,10 +22,11 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::latest()->paginate(5);
+        $clients = Client::latest()->paginate(20);
   
         return view('clients.index',compact('clients'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
+            
     }
 
     /**
@@ -41,10 +50,13 @@ class ClientController extends Controller
         $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
-            'date_de_naissance' => 'required',
-            'numero_telephone' => 'required',
+            'datedenaissance' => 'required',
+            'numerotelephone' => 'required',
             'adresse' => 'required',
-            'condition_paiement' => 'required',
+            'ville' => 'required',
+            'codepostal' => 'required',
+            'email' => 'required',
+            'motdepasse' => 'required',
             
         ]);
   
@@ -65,6 +77,14 @@ class ClientController extends Controller
         return view('clients.show',compact('client'));
     }
 
+    public function show_contrats(Client $client){
+        $contrats = $client->contrats;
+        if(count($contrats) > 0){
+            return response()->json(['message'=>'Success','data'=>$contrats],200);
+        }
+            return response()->json(['message'=>'No contracts Found','data'=>null],200);
+
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -88,10 +108,13 @@ class ClientController extends Controller
         $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
-            'date_de_naissance' => 'required',
-            'numero_telephone' => 'required',
+            'datedenaissance' => 'required',
+            'numerotelephone' => 'required',
             'adresse' => 'required',
-            'condition_paiement' => 'required',
+            'ville' => 'required',
+            'codepostal' => 'required',
+            'email' => 'required',
+            'motdepasse' => 'required',
         ]);
   
         $client->update($request->all());

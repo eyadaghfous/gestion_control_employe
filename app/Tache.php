@@ -7,11 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tache extends Model
 {
     protected $fillable = [
-        'nom', 'debut' , 'fin'
-    ];
+        'sommaire' , 'description' , 'status' , 'debut' , 'fin'
+    ]; 
 
-    public function employee()
-    {
-        return $this->hasMany('App\Employee');
-    }
 }

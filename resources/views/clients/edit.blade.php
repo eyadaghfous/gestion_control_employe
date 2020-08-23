@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Modifier le client</h2>
+                <h2>Edit Customer</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('clients.index') }}"> Back</a>
@@ -14,7 +14,7 @@
 
     @if($errors->any())
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> Il ya un problème.<br><br>
+            <strong>Whoops!</strong> There's a problem.<br><br>
             <ul>
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -30,42 +30,60 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Nom:</strong>
+                    <strong>Last Name:</strong>
                     <input type="text" name="nom" class="form-control" value="{{ $client->nom }}">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Prénom:</strong>
+                    <strong>First Name:</strong>
                     <input class="form-control" type="text" name="prenom"value="{{ $client->prenom }}">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Date de naissance:</strong>
-                    <input class="form-control" type="date" name="date_de_naissance" value="{{ $client->date_de_naissance }}">
+                    <strong>Birth Date:</strong>
+                    <input class="form-control" type="date" name="datedenaissance" value="{{ $client->datedenaissance }}">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Numéro du téléphone:</strong>
-                    <input class="form-control" type="number" name="numero_telephone" value="{{ $client->numero_telephone }}">
+                    <strong>Phone Number:</strong>
+                    <input class="form-control" type="number" name="numerotelephone" value="{{ $client->numerotelephone }}">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Adresse:</strong>
+                    <strong>Address:</strong>
                     <textarea class="form-control" name="adresse">{{ $client->adresse }}</textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Condition du paiement:</strong>
-                    <input class="form-control" type="text" name="condition_paiement"  value="{{ $client->condition_paiement }}">
+                    <strong>City:</strong>
+                    <input class="form-control" type="text" name="ville" value="{{ $client->ville }}">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Postal Code:</strong>
+                    <input class="form-control" type="text" name="codepostal" value="{{ $client->codepostal }}">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Email:</strong>
+                    <input class="form-control" type="email" name="email" value="{{ $client->email }}">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Password:</strong>
+                    <input class="form-control" type="password" name="motdepasse" value="{{ $client->motdepasse }}">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
        

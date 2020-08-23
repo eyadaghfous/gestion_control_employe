@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\Departement;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:employee-list|employee-create|employee-edit|employee-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:employee-create', ['only' => ['create','store']]);
+         $this->middleware('permission:employee-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:employee-delete', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,10 +23,13 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::latest()->paginate(5);
+        $departement = Departement::all();
+
+        $employees = Employee::latest()->paginate(20);
   
         return view('employees.index',compact('employees'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 5)
+            ->with('departements',$departement);
     }
 
     /**
@@ -27,7 +39,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employees.create');
+        $departement = Departement::all();
+        return view('employees.create')
+        ->with('departements',$departement);
     }
 
     /**
@@ -41,17 +55,22 @@ class EmployeeController extends Controller
         $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
+            'email' => 'required',
+            'motdepasse' => 'required',
+            'numerotelephone' => 'required',
+            'id_departement' => 'required',
             'ville' => 'required',
             'etat' => 'required',
             'sexe' => 'required',
             'date_embauche' => 'required',
+            'photo' => 'required',
             
         ]);
-  
+            
         Employee::create($request->all());
    
         return redirect()->route('employees.index')
-                        ->with('success','Employé ajouté avec succés.');
+                        ->with('success','Employé added successfully.');
     }
 
     /**
@@ -60,7 +79,7 @@ class EmployeeController extends Controller
      * @param  Employee  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Employe $employe)
+    public function show(Employee $employee)
     {
         return view('employees.show',compact('employee'));
     }
@@ -71,7 +90,7 @@ class EmployeeController extends Controller
      * @param  Employee  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employe $employe)
+    public function edit(Employee $employee)
     {
         return view('employees.edit',compact('employee'));
     }
@@ -86,7 +105,7 @@ class EmployeeController extends Controller
     public function update(Request $request, Employe $employe)
     {
         return redirect()->route('employees.index')
-        ->with('success','Employé modifié avec succés');
+        ->with('success','Employé updated successfully.');
     }
 
     /**

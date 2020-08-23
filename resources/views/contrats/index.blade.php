@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Liste des contrats</h2>
+                <h2>Contracts</h2>
             </div>
             <div class="float-right m-3">
                 <a class="btn btn-success" href="{{ route('contrats.create') }}"><i class="ik ik-plus"></i> Add </a> 
@@ -21,19 +21,31 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>Type</th>
-            <th>Montant contrat</th>
-            <th>Numéro facture</th>
-            <th>Date du règlement</th>
+            <th>Contract Details</th>
+            <th>Title of project</th>
+            <th>Customer</th>
+            <th>Team</th>
             <th width="150px">Action</th>
         </tr>
         @foreach ($contrats as $contrat)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $contrat->type }}</td>
-            <td>{{ $contrat->montant_ht_contrat }}</td>
-            <td>{{ $contrat->num_facture }}</td>
-            <td>{{ $contrat->date_reglement }}</td>
+            <td>{{ $contrat->details }}</td>
+            @foreach ($projets as $projet)
+                @if($projet->id ==  $contrat->num_projet)
+                    <td>{{ $projet->titre }}</td>
+                @endif
+            @endforeach
+            @foreach ($clients as $client)
+                @if($client->id ==  $contrat->num_client)
+                    <td>{{ $client->nom }} {{ $client->prenom }}</td>
+                @endif
+           @endforeach
+           @foreach ($equipes as $equipe)
+                @if($equipe->id ==  $contrat->num_equipe)
+                    <td>{{ $equipe->nom }}</td>
+                @endif
+           @endforeach
             <td>
                 <form action="{{ route('contrats.destroy',$contrat->id) }}" method="POST">
    

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Contrat;
+use App\Client;
+use App\Projet;
+use App\Equipe;
 use Illuminate\Http\Request;
 
 
@@ -16,9 +19,14 @@ class ContratController extends Controller
     public function index()
     {
         $contrats = Contrat::latest()->paginate(5);
-  
+        $clients=Client::all();
+        $projets=Projet::all();
+        $equipes=Equipe::all();
         return view('contrats.index',compact('contrats'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 5)
+            ->with('clients', $clients)
+            ->with('equipes', $equipes)
+            ->with('projets', $projets);
     }
 
     /**
@@ -53,7 +61,7 @@ class ContratController extends Controller
         Contrat::create($request->all());
    
         return redirect()->route('contrats.index')
-                        ->with('success','Contrat ajouté avec succés.');
+                        ->with('success','Contrat added succesfulyy.');
     }
 
     /**
